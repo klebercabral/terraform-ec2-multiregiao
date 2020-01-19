@@ -2,3 +2,4 @@ mac_west.pem
 mac.pem
 .terraform
 plano
+terraform.tfstate
