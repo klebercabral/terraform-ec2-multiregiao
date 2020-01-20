@@ -3,3 +3,4 @@ mac.pem
 .terraform
 plano
 terraform.tfstate
+.DS_Store
