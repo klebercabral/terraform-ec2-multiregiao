@@ -1,63 +1,75 @@
-data "aws_ami" "ubuntu" {
+data "aws_ami" "ubuntu_east" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["IaaSWeek-${var.hash_commit}"]
+    values = [var.ami_name_east]
   }
 
-  owners = ["777015859311"] # My User
+  owners = [var.ami_owners_east]
 }
 
 resource "aws_instance" "web" {
   provider = aws
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  subnet_id     = "subnet-094416f4334e66510"
-  key_name      = "mac"
-  count         = 2
+  ami           = data.aws_ami.ubuntu_east.id
+  instance_type = var.instance_type_east
+  subnet_id     = var.subnet_east
+  key_name      = var.key_name_east
+  count         = var.count_east
   associate_public_ip_address = true
-  security_groups = ["sg-01399a06156627e79"]
+  security_groups = [var.security_groups_east]
 
     provisioner "remote-exec" {
       inline = [
-        "touch /tmp/test",
+        "{$var.remote_exec_east}",
       ]
       connection {
         type     = "ssh"
-        user     = "ubuntu"
-        private_key = "${file("mac.pem")}"
-        host     = "${self.public_ip}"
+        user     = var.provisioner_user_east
+        private_key = file(var.private_key_east)
+        host     = self.public_ip
       }
     }
 
   tags = {
-    Name = "HelloWorld"
+    Name = var.instance_tag_name_east
   }
+}
+
+data "aws_ami" "ubuntu_west" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = [var.ami_name_east]
+  }
+
+  owners = [var.ami_owners_east]
 }
 
 resource "aws_instance" "west" {
   provider = aws.west
-  ami           = "ami-0dd655843c87b6930"
-  instance_type = "t2.micro"
-  subnet_id     = "subnet-0e0f3c7cfd074e330"
-  key_name      = "mac_west"
+  ami           = data.aws_ami.ubuntu_west.id
+  instance_type = var.instance_type_west
+  subnet_id     = var.subnet_west
+  key_name      = var.key_name_west
+  count         = var.count_west
   associate_public_ip_address = true
-  security_groups = ["sg-05ce65c7457ab1909"]
+  security_groups = [var.security_groups_west]
 
     provisioner "remote-exec" {
       inline = [
-        "touch /tmp/test",
+        "{$var.remote_exec_west}",
       ]
       connection {
         type     = "ssh"
-        user     = "ubuntu"
-        private_key = "${file("mac_west.pem")}"
-        host     = "${self.public_ip}"
+        user     = var.provisioner_user_west
+        private_key = file(var.private_key_west)
+        host     = self.public_ip
       }
     }
 
   tags = {
-    Name = "HelloWorld"
+    Name = var.instance_tag_name_west
   }
 }
