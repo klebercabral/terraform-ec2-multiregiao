@@ -75,3 +75,11 @@ variable "private_key_west" {
 variable "instance_tag_name_west" {
   default = "HelloWorld"
 }
+
+variable "remote_exec_east" {
+  default = "touch /tmp/test"
+}
+
+variable "remote_exec_west" {
+  default = "touch /tmp/test"
+}
