@@ -21,7 +21,7 @@ resource "aws_instance" "web" {
 
     provisioner "remote-exec" {
       inline = [
-        "{$var.remote_exec_east}",
+        "touch /tmp/test",
       ]
       connection {
         type     = "ssh"
@@ -59,7 +59,7 @@ resource "aws_instance" "west" {
 
     provisioner "remote-exec" {
       inline = [
-        "{$var.remote_exec_west}",
+        "touch /tmp/test",
       ]
       connection {
         type     = "ssh"

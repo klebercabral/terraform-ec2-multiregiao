@@ -25,10 +25,6 @@ variable "security_groups_east" {
   default = "sg-01399a06156627e79"
 }
 
-variable "remote_exec_east" {
-  default = "touch /tmp/test"
-}
-
 variable "provisioner_user_east" {
   default = "ubuntu"
 }
@@ -66,10 +62,6 @@ variable "count_west" {
 
 variable "security_groups_west" {
   default = "sg-05ce65c7457ab1909"
-}
-
-variable "remote_exec_west" {
-  default = "touch /tmp/test"
 }
 
 variable "provisioner_user_west" {
