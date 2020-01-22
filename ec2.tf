@@ -36,20 +36,20 @@ resource "aws_instance" "web" {
   }
 }
 
-data "aws_ami" "ubuntu_west" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = [var.ami_name_east]
-  }
-
-  owners = [var.ami_owners_east]
-}
+#data "aws_ami" "ubuntu_west" {
+#  most_recent = true
+#
+#  filter {
+#    name   = "name"
+#    values = [var.ami_name_west]
+#  }
+#
+#  owners = [var.ami_owners_west]
+#}
 
 resource "aws_instance" "west" {
   provider = aws.west
-  ami           = data.aws_ami.ubuntu_west.id
+  ami           = var.ami_name_west
   instance_type = var.instance_type_west
   subnet_id     = var.subnet_west
   key_name      = var.key_name_west

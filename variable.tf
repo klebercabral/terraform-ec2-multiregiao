@@ -65,7 +65,7 @@ variable "count_west" {
 }
 
 variable "security_groups_west" {
-  default = "sg-01399a06156627e79"
+  default = "sg-05ce65c7457ab1909"
 }
 
 variable "remote_exec_west" {
