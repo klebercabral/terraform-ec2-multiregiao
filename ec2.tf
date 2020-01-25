@@ -36,17 +36,6 @@ resource "aws_instance" "web" {
   }
 }
 
-#data "aws_ami" "ubuntu_west" {
-#  most_recent = true
-#
-#  filter {
-#    name   = "name"
-#    values = [var.ec2.ami_name_west]
-#  }
-#
-#  owners = [var.ec2.ami_owners_west]
-#}
-
 resource "aws_instance" "west" {
   provider = aws.west
   ami           = var.ec2.ami_name_west
