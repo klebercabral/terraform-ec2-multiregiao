@@ -1,5 +1,4 @@
-variable "ec2" {
-    type = map
+variable "ec2_east" {
     default = {
         "ami_name_east" = "IaaSWeek-806d52dafe9b7fddbc4f0d2d41086ed3cfa02a44"
         "ami_owners_east" = "777015859311"
@@ -11,7 +10,12 @@ variable "ec2" {
         "provisioner_user_east" = "ubuntu"
         "private_key_east" = "mac.pem"
         "instance_tag_name_east" = "HelloWorld"
-        "remote_exec_west" = "touch /tmp/test"
+        "remote_exec_east" = "touch /tmp/test"
+    }
+}
+
+variable "ec2_west" {
+    default = {
         "ami_name_west" = "ami-0dd655843c87b6930"
         "instance_type_west" = "t2.micro"
         "subnet_west" = "subnet-0e0f3c7cfd074e330"
@@ -21,6 +25,6 @@ variable "ec2" {
         "provisioner_user_west" = "ubuntu"
         "private_key_west" = "mac_west.pem"
         "instance_tag_name_west" = "HelloWorld"
-        "remote_exec_east" = "touch /tmp/test"
+        "remote_exec_west" = "touch /tmp/test"
     }
 }
