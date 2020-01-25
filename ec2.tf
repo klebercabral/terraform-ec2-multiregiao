@@ -19,17 +19,17 @@ provider      = "aws"
   associate_public_ip_address = true
   security_groups = ["${var.ec2_east.security_groups_east}"]
 
-    provisioner "remote-exec" {
-      inline = [
-        "${var.ec2_east.remote_exec_east}",
-      ]
-      connection {
-        type     = "ssh"
-        user     = "${var.ec2_east.provisioner_user_east}"
-        private_key = "${file("mac.pem")}"
-        host     = "${self.public_ip}"
-      }
-    }
+    #provisioner "remote-exec" {
+    #  inline = [
+    #    "${var.ec2_east.remote_exec_east}",
+    #  ]
+    #  connection {
+    #    type     = "ssh"
+    #    user     = "${var.ec2_east.provisioner_user_east}"
+    #    private_key = "${file("mac.pem")}"
+    #    host     = "${self.public_ip}"
+    #  }
+    #}
 
   tags = {
     Name = "${var.ec2_east.instance_tag_name_east}"
@@ -45,17 +45,17 @@ resource "aws_instance" "west" {
   associate_public_ip_address = true
   security_groups = ["${var.ec2_west.security_groups_west}"]
 
-    provisioner "remote-exec" {
-      inline = [
-        "${var.ec2_west.remote_exec_west}",
-      ]
-      connection {
-        type     = "ssh"
-        user     = "${var.ec2_west.provisioner_user_west}"
-        private_key = "${file("mac_west.pem")}"
-        host     = "${self.public_ip}"
-      }
-    }
+    #provisioner "remote-exec" {
+    #  inline = [
+    #    "${var.ec2_west.remote_exec_west}",
+    #  ]
+    #  connection {
+    #    type     = "ssh"
+    #    user     = "${var.ec2_west.provisioner_user_west}"
+    #    private_key = "${file("mac_west.pem")}"
+    #    host     = "${self.public_ip}"
+    #  }
+    #}
 
   tags = {
     Name = "${var.ec2_west.instance_tag_name_west}"
