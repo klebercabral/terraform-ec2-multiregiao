@@ -19,7 +19,6 @@ variable "ec2_west" {
         "instance_type_west" = "t2.micro"
         "subnet_west" = "subnet-0e0f3c7cfd074e330"
         "key_name_west" = "mac_west"
-        "count_west" = 1
         "security_groups_west" = "sg-05ce65c7457ab1909"
         "provisioner_user_west" = "ubuntu"
         "instance_tag_name_west" = "HelloWorld"

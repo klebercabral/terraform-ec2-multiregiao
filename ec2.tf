@@ -42,7 +42,6 @@ resource "aws_instance" "west" {
   instance_type = "${var.ec2_west.instance_type_west}"
   subnet_id     = "${var.ec2_west.subnet_west}"
   key_name      = "${var.ec2_west.key_name_west}"
-  count         = "${var.ec2_west.count_west}"
   associate_public_ip_address = true
   security_groups = ["${var.ec2_west.security_groups_west}"]
 
