@@ -6,7 +6,6 @@ module "servers" {
     subnet = "subnet-76f1d458"
     key_name = "lab"
     key_path = "lab.pem"
-    servers = 2
     provisioner_user = "ubuntu"
     instance_tag_name = "HelloWorld"
     remote_exec = "touch /tmp/test "
