@@ -9,21 +9,10 @@ provider "aws" {
   version = "~> 2.0"
 }
 
-#terraform {
-#  backend "s3" {
-#    bucket = "terraform.statefile"
-#    key    = "terraform-test.tfstate"
-#    region = "us-east-1"
-#  }
-#}
-
 terraform {
-  backend "remote" {
-    hostname = "app.terraform.io"
-    organization = "kleber"
-
-    workspaces {
-      name = "ec2-multiregiao"
-    }
+  backend "s3" {
+    bucket = "terraform.statefile"
+    key    = "terraform-test.tfstate"
+    region = "us-east-1"
   }
 }
