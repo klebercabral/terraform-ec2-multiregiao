@@ -42,7 +42,7 @@ resource "aws_instance" "web" {
       connection {
         type        = "ssh"
         user        = "${var.ec2_east.provisioner_user_east}"
-        private_key = "${file("mac.pem")}"
+        private_key = "${file("lab.pem")}"
         host        = "${self.public_ip}"
       }
     }
@@ -83,7 +83,7 @@ resource "aws_instance" "west" {
       connection {
         type        = "ssh"
         user        = "${var.ec2_west.provisioner_user_west}"
-        private_key = "${file("mac_west.pem")}"
+        private_key = "${file("lab.pem")}"
         host        = "${self.public_ip}"
       }
     }

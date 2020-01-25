@@ -4,7 +4,7 @@ variable "ec2_east" {
         "ami_owners_east"           = "777015859311"
         "instance_type_east"        = "t2.micro"
         "subnet_east"               = "subnet-76f1d458"
-        "key_name_east"             = "mac"
+        "key_name_east"             = "lab"
         "count_east"                = 2
         "provisioner_user_east"     = "ubuntu"
         "instance_tag_name_east"    = "HelloWorld"
@@ -17,7 +17,7 @@ variable "ec2_west" {
         "ami_name_west"             = "ami-0dd655843c87b6930"
         "instance_type_west"        = "t2.micro"
         "subnet_west"               = "subnet-881e10d3"
-        "key_name_west"             = "mac_west"
+        "key_name_west"             = "lab"
         "provisioner_user_west"     = "ubuntu"
         "instance_tag_name_west"    = "HelloWorld"
         "remote_exec_west"          = "touch /tmp/test"
