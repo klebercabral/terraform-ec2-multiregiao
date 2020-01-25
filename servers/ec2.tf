@@ -14,19 +14,8 @@ resource "aws_security_group" "ssh" {
   }
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name      = "name"
-    values    = ["${var.ami_name}"]
-  }
-
-  owners      = ["${var.ami_owners}"]
-}
-
 resource "aws_instance" "web" {
-  ami                         = "${data.aws_ami.ubuntu.id}"
+  ami                         = "${var.ami_name}"
   instance_type               = "${var.instance_type}"
   subnet_id                   = "${var.subnet}"
   key_name                    = "${var.key_name}"

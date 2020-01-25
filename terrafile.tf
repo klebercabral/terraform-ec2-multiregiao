@@ -1,7 +1,9 @@
-module "servers" {
+module "servers_east" {
     source = "./servers"
-    ami_name = "IaaSWeek-806d52dafe9b7fddbc4f0d2d41086ed3cfa02a44"
-    ami_owners = "777015859311"
+    providers = {
+      aws = "aws"
+    }
+    ami_name = "ami-04b9e92b5572fa0d1"
     instance_type = "t2.micro"
     subnet = "subnet-76f1d458"
     key_name = "lab"
@@ -10,6 +12,25 @@ module "servers" {
     instance_tag_name = "HelloWorld"
     remote_exec = "touch /tmp/test "
 }
-output "ip_address" {
-  value = "${module.servers.ip_address}"
+
+module "servers_west" {
+    source = "./servers"
+    providers = {
+      aws = "aws.west"
+    }
+    ami_name = "ami-0dd655843c87b6930"
+    instance_type = "t2.micro"
+    subnet = "subnet-881e10d3"
+    key_name = "lab"
+    key_path = "lab.pem"
+    provisioner_user = "ubuntu"
+    instance_tag_name = "HelloWorld"
+    remote_exec = "touch /tmp/test "
+}
+
+output "ip_address_east" {
+  value = "${module.servers_east.ip_address}"
+}
+output "ip_address_west" {
+  value = "${module.servers_west.ip_address}"
 }
