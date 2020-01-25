@@ -8,7 +8,6 @@ variable "ec2_east" {
         "count_east" = 2
         "security_groups_east" = "sg-01399a06156627e79"
         "provisioner_user_east" = "ubuntu"
-        "private_key_east" = "mac.pem"
         "instance_tag_name_east" = "HelloWorld"
         "remote_exec_east" = "touch /tmp/test"
     }
@@ -23,7 +22,6 @@ variable "ec2_west" {
         "count_west" = 1
         "security_groups_west" = "sg-05ce65c7457ab1909"
         "provisioner_user_west" = "ubuntu"
-        "private_key_west" = "mac_west.pem"
         "instance_tag_name_west" = "HelloWorld"
         "remote_exec_west" = "touch /tmp/test"
     }
