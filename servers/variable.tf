@@ -2,7 +2,7 @@ variable "ami_name" {
 }
 variable "instance_type" {
 }
-variable "subnet" {  
+variable "subnet" {
 }
 variable "key_name" {
 }

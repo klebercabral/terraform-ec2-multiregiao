@@ -15,50 +15,50 @@ resource "aws_security_group" "ssh" {
 }
 
 resource "aws_instance" "web" {
-  ami                         = "${var.ami_name}"
-  instance_type               = "${var.instance_type}"
-  subnet_id                   = "${var.subnet}"
-  key_name                    = "${var.key_name}"
-  vpc_security_group_ids      = ["${aws_security_group.ssh.id}"]
+  ami                    = "${var.ami_name}"
+  instance_type          = "${var.instance_type}"
+  subnet_id              = "${var.subnet}"
+  key_name               = "${var.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.ssh.id}"]
 
-    provisioner "remote-exec" {
-      inline = [
-        "${var.remote_exec}",
-      ]
-      connection {
-        type        = "ssh"
-        user        = "${var.provisioner_user}"
-        private_key = "${file("${var.key_path}")}"
-        host        = "${self.public_ip}"
-      }
+  provisioner "remote-exec" {
+    inline = [
+      "${var.remote_exec}",
+    ]
+    connection {
+      type        = "ssh"
+      user        = "${var.provisioner_user}"
+      private_key = "${file("${var.key_path}")}"
+      host        = "${self.public_ip}"
     }
+  }
   tags = {
     Name = "${var.instance_tag_name}"
   }
 }
 
 resource "aws_eip" "ip" {
-    vpc = true
-    instance = "${aws_instance.web.id}"
+  vpc      = true
+  instance = "${aws_instance.web.id}"
 }
 
 resource "aws_instance" "web2" {
-  ami                         = "${var.ami_name}"
-  instance_type               = "${var.instance_type}"
-  subnet_id                   = "${var.subnet}"
-  key_name                    = "${var.key_name}"
-  vpc_security_group_ids      = ["${aws_security_group.ssh.id}"]
-    provisioner "remote-exec" {
-      inline = [
-        "${var.remote_exec}",
-      ]
-        connection {
-          type        = "ssh"
-          user        = "${var.provisioner_user}"
-          private_key = "${file("${var.key_path}")}"
-          host        = "${self.public_ip}"
-        }
+  ami                    = "${var.ami_name}"
+  instance_type          = "${var.instance_type}"
+  subnet_id              = "${var.subnet}"
+  key_name               = "${var.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.ssh.id}"]
+  provisioner "remote-exec" {
+    inline = [
+      "${var.remote_exec}",
+    ]
+    connection {
+      type        = "ssh"
+      user        = "${var.provisioner_user}"
+      private_key = "${file("${var.key_path}")}"
+      host        = "${self.public_ip}"
     }
+  }
   tags = {
     Name = "${var.instance_tag_name}"
   }

@@ -12,9 +12,9 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "terraform.statefile"
-#    dynamodb_table = "terraform-state-lock-dynamo"
-    key    = "terraform-test.tfstate"
-    region = "us-east-1"
+    #    dynamodb_table = "terraform-state-lock-dynamo"
+    key     = "terraform-test.tfstate"
+    region  = "us-east-1"
     encrypt = true
   }
 }
