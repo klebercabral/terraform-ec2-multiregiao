@@ -31,6 +31,9 @@ module "servers_east" {
 output "ip_address_east" {
   value = "${module.servers_east.ip_address}"
 }
+output "ip_address_east2" {
+  value = "${module.servers_east.ip_address2}"
+}
 
 #output "ip_address_west" {
 #  value = "${module.servers_west.ip_address}"
