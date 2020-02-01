@@ -10,7 +10,7 @@ module "servers_east" {
     key_path = "lab.pem"
     provisioner_user = "ubuntu"
     instance_tag_name = "HelloWorld"
-    remote_exec = "touch /tmp/test "
+    remote_exec = "touch /tmp/test"
 }
 
 #module "servers_west" {
