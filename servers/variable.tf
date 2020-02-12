@@ -1,6 +1,8 @@
 variable "ami_name" {
 }
-variable "instance_type" {
+variable "instance_type_s" {
+}
+variable "instance_type_m" {
 }
 variable "subnet" {
 }
@@ -13,4 +15,7 @@ variable "provisioner_user" {
 variable "instance_tag_name" {
 }
 variable "remote_exec" {
+}
+
+variable "ec2_count" {
 }

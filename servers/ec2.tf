@@ -15,8 +15,9 @@ resource "aws_security_group" "ssh" {
 }
 
 resource "aws_instance" "web" {
+  count                  = "${var.ec2_count}"
   ami                    = "${var.ami_name}"
-  instance_type          = "${var.instance_type}"
+  instance_type          = "${count.index < 1 ? var.instance_type_s : var.instance_type_m}"
   subnet_id              = "${var.subnet}"
   key_name               = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.ssh.id}"]
@@ -39,12 +40,14 @@ resource "aws_instance" "web" {
 
 resource "aws_eip" "ip" {
   vpc      = true
-  instance = "${aws_instance.web.id}"
+  count    = "${var.ec2_count}"
+  instance = "${element(aws_instance.web.*.id, count.index)}"
+  depends_on = ["aws_instance.web"]
 }
 
 resource "aws_instance" "web2" {
   ami                    = "${var.ami_name}"
-  instance_type          = "${var.instance_type}"
+  instance_type          = "${var.instance_type_s}"
   subnet_id              = "${var.subnet}"
   key_name               = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.ssh.id}"]
