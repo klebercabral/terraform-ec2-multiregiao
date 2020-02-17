@@ -19,3 +19,11 @@ variable "remote_exec" {
 
 variable "ec2_count" {
 }
+
+variable "blocks" {
+  type        = list(object({
+      device_name = string
+      volume_size = number
+      volume_type = string
+    }))
+}
