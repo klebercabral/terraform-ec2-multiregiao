@@ -31,17 +31,17 @@ resource "aws_instance" "web" {
     }
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "${var.remote_exec}",
-    ]
-    connection {
-      type        = "ssh"
-      user        = "${var.provisioner_user}"
-      private_key = "${file("${var.key_path}")}"
-      host        = "${self.public_ip}"
-    }
-  }
+  #provisioner "remote-exec" {
+  #  inline = [
+  #    "${var.remote_exec}",
+  #  ]
+  #  connection {
+  #    type        = "ssh"
+  #    user        = "${var.provisioner_user}"
+  #    private_key = "${file("${var.key_path}")}"
+  #    host        = "${self.public_ip}"
+  #  }
+  #}
   tags = {
     Name = "%{ if var.instance_tag_name != "" }${var.instance_tag_name}%{ else }Untagged%{ endif }!"
   }
@@ -60,17 +60,17 @@ resource "aws_instance" "web2" {
   subnet_id              = "${var.subnet}"
   key_name               = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.ssh.id}"]
-  provisioner "remote-exec" {
-    inline = [
-      "${var.remote_exec}",
-    ]
-    connection {
-      type        = "ssh"
-      user        = "${var.provisioner_user}"
-      private_key = "${file("${var.key_path}")}"
-      host        = "${self.public_ip}"
-    }
-  }
+  #provisioner "remote-exec" {
+  #  inline = [
+  #    "${var.remote_exec}",
+  #  ]
+  #  connection {
+  #    type        = "ssh"
+  #    user        = "${var.provisioner_user}"
+  #    private_key = "${file("${var.key_path}")}"
+  #    host        = "${self.public_ip}"
+  #  }
+  #}
   tags = {
     Name = "${var.instance_tag_name}"
   }
