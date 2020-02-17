@@ -20,7 +20,7 @@ resource "aws_instance" "web" {
   instance_type          = count.index < 1 ? var.instance_type_s : var.instance_type_m
   subnet_id              = var.subnet
   key_name               = var.key_name
-  vpc_security_group_ids = ["aws_security_group.ssh.id"]
+  vpc_security_group_ids = [aws_security_group.ssh.id]
 
   dynamic "ebs_block_device" {
     for_each = var.blocks
