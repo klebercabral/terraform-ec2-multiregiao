@@ -4,7 +4,7 @@ variable "plus" {
 module "servers_east" {
   source = "./servers"
   providers = {
-    aws = "aws"
+    aws = aws
   }
   #ami_name          = "${terraform.workspace == "production" ? "ami-04b9e92b5572fa0d1" : "ami-0d5d9d301c853a04a"}"
   ami_name          = "ami-04b9e92b5572fa0d1"
@@ -13,10 +13,10 @@ module "servers_east" {
   #subnet            = "${terraform.workspace == "production" ? "subnet-76f1d458" : "subnet-f3b1ba9b"}"
   subnet            = "subnet-76f1d458"
   key_name          = "lab"
-  key_path          = "lab.pem"
-  provisioner_user  = "ubuntu"
+  #key_path          = "lab.pem"
+  #provisioner_user  = "ubuntu"
   instance_tag_name = "HelloWorld"
-  remote_exec       = "touch /tmp/test"
+  #remote_exec       = "touch /tmp/test"
   #ec2_count         = "${terraform.workspace == "production" ? "2" + var.plus : "1"}"
   ec2_count         = 1 + var.plus
   blocks = [
@@ -49,10 +49,10 @@ module "servers_east" {
 #}
 
 output "ip_address_web" {
-  value = "${module.servers_east.ip_address}"
+  value = module.servers_east.ip_address
 }
 output "ip_address_web2" {
-  value = "${module.servers_east.ip_address2}"
+  value = module.servers_east.ip_address2
 }
 
 #output "ip_address_west" {
