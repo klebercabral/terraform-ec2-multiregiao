@@ -11,7 +11,7 @@ module "servers_east" {
   instance_type_s   = "t2.micro"
   instance_type_m   = "t3.medium"
   #subnet            = "${terraform.workspace == "production" ? "subnet-76f1d458" : "subnet-f3b1ba9b"}"
-  subnet            = "subnet-f3b1ba9b"
+  subnet            = "subnet-76f1d458"
   key_name          = "lab"
   key_path          = "lab.pem"
   provisioner_user  = "ubuntu"
