@@ -43,7 +43,7 @@ resource "aws_instance" "web" {
     }
   }
   tags = {
-    Name = "${var.instance_tag_name}"
+    Name = "%{ if var.instance_tag_name != "" }${var.instance_tag_name}%{ else }Untagged%{ endif }!"
   }
 }
 
